@@ -64,7 +64,7 @@ class Machinerydetails extends Component {
                                 <td>{machineries.purchasedDate}</td>
                                 <td>{machineries.imageUrl}</td>
                                 <td>
-                                    <a className='btn btn-warning' href={`/edit/${machineries._id}`}>
+                                    <a className='btn btn-warning' href={`/edit-machinery/${machineries._id}`}>
                                         <i className='fas fa-edit'></i>&nbsp; Edit
                                     </a>
                                     &nbsp;

@@ -33,10 +33,10 @@ function App() {
           <Route path="/machinery" element={<Machinerydetails/>} />
         </Routes>
         <Routes>
-          <Route exact path="/add" element={<AddMachinery/>} />
+          <Route exact path="/add-machinery" element={<AddMachinery/>} />
         </Routes>
         <Routes>
-          <Route exact path="/edit/:id" element={<EditMachinery/>} />
+          <Route exact path="/edit-machinery/:id" element={<EditMachinery/>} />
         </Routes>
 
 

@@ -38,7 +38,7 @@ function AddMachinery(){
                <nav className="prmenu">
                     <ul className="">
                         <li><a href="/">Home</a></li>                    
-                        <li><a href="/add">Add Machinery</a></li>
+                        <li><a href="/add-machinery">Add Machinery</a></li>
                         <li><a href="/machinery">List of machineries</a></li>
                     </ul>
                </nav>       
