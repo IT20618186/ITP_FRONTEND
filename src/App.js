@@ -11,6 +11,10 @@ import Machinerydetails from './components/MaterialManagement/MachineryDetails';
 import EditMachinery from './components/MaterialManagement/EditMachinery';
 import Crewandsalaryhome from './components/CrewAndSalaryManagement/CrewAndSalaryHome';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import MaterialDetails from './components/MaterialManagement/MaterialDetails';
+import AddMaterials from './components/MaterialManagement/AddMaterials';
+import ViewSchedule from './components/TimeManagementAndScheduling/ViewSchedule';
+import AddTimescheduling from './components/TimeManagementAndScheduling/AddTimescheduling';
 
 
 
@@ -33,10 +37,16 @@ function App() {
           <Route path="/machinery" element={<Machinerydetails/>} />
         </Routes>
         <Routes>
-          <Route exact path="/add" element={<AddMachinery/>} />
+          <Route exact path="/add-machinery" element={<AddMachinery/>} />
         </Routes>
         <Routes>
-          <Route exact path="/edit/:id" element={<EditMachinery/>} />
+          <Route exact path="/edit-machinery/:id" element={<EditMachinery/>} />
+        </Routes>
+        <Routes>
+          <Route exact path="/materials" element={<MaterialDetails/>} />
+        </Routes>
+        <Routes>
+          <Route exact path="/add-material" element={<AddMaterials/>} />
         </Routes>
 
 
@@ -50,6 +60,13 @@ function App() {
 
         <Routes>
           <Route path='/crew-and-salary-home' element={<Crewandsalaryhome/>} />
+        </Routes>
+
+        <Routes>
+          <Route path='/viewSchedule' element={<ViewSchedule/>}/>
+        </Routes>
+        <Routes>
+          <Route path='/add-schedule' element={<AddTimescheduling/>}/>
         </Routes>
 
         <FooterBottom/>  

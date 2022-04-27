@@ -17,7 +17,7 @@ class EditMachinery extends Component {
     handleInputChange = (e) =>{
         const {name,value} = e.target;
 
-        this.setSatate({
+        this.setState({
             ...this.state,
             [name]:value
         })
@@ -40,9 +40,9 @@ class EditMachinery extends Component {
 
         console.log(data)
 
-        axios.put(`/machinery/update/${id}`, data).then((res) =>{
+        axios.put(`http://localhost:8000/machinery/update/${id}`, data).then((res) =>{
             if(res.data.success){
-                alert("machinery Updated Successfully")
+                alert("machinery Updated Successfully");
                 this.setState(
                     {
                         machineryId:"",
@@ -53,7 +53,7 @@ class EditMachinery extends Component {
                     }
                 )
             }
-        })
+        });
     }
 
 
@@ -61,13 +61,13 @@ class EditMachinery extends Component {
     componentDidMount(){
         const id = this.props.match.params.id;
 
-        axios.get(`/machinery/${id}`).then((res) =>{
+        axios.get(`http://localhost:8000/machinery/${id}`).then((res) =>{
             if(res.data.success){
                 this.setState({
                     machinery:res.data.machinery
                 });
 
-                console.log(this.state.machinery);
+                console.log(this.state.machineryId);
             }
         })
     }
@@ -79,7 +79,7 @@ class EditMachinery extends Component {
                    <nav className="prmenu">
                         <ul className="">
                             <li><a href="/">Home</a></li>                    
-                            <li><a href="/add">Add Machinery</a></li>
+                            <li><a href="/add-machinery">Add Machinery</a></li>
                             <li><a href="/machinery">List of machineries</a></li>
                         </ul>
                    </nav>       
@@ -90,29 +90,39 @@ class EditMachinery extends Component {
                 <form className="forms">
                     <div className="form-group">
                         <label for="ID">Machinery ID :</label>&nbsp;<br></br>
-                        <input type="text" className="inputcell" id="ID" placeholder="Enter Machinery ID"></input>
+                        <input type="text" className="inputcell" id="ID" placeholder="Enter Machinery ID"
+                        value={this.state.machineryId}
+                        onChange={this.handleInputChange}/>
                     </div>
                     
                     <div className="form-group">
                         <label for="description">Description :</label>&nbsp;<br></br>
-                        <input type="text" className="inputcell" id="description" placeholder="Enter Description" ></input>
+                        <input type="text" className="inputcell" id="description" placeholder="Enter Description" 
+                        value={this.state.description}
+                        onChange={this.handleInputChange}></input>
                     </div>
     
                     <div className="form-group">
                         <label for="Quantity">Machinery's Quantity :</label>&nbsp;<br></br>
-                        <input type="text" className="inputcell" id="Quantity" placeholder="Enter Quantity" ></input>
+                        <input type="text" className="inputcell" id="Quantity" placeholder="Enter Quantity" 
+                        value={this.state.quantity}
+                        onChange={this.handleInputChange}></input>
                     </div>
     
                     <div className="form-group">
                         <label for="date">Date of Purchased :</label>&nbsp;<br></br>
-                        <input type="text" className="inputcell" id="date" placeholder="Enter Date of Purchased Item" ></input>
+                        <input type="text" className="inputcell" id="date" placeholder="Enter Date of Purchased Item" 
+                        value={this.state.purchasedDate}
+                        onChange={this.handleInputChange}></input>
                     </div>
     
                     <div className="form-group">
                         <label for="imageUrl">Machinery Image Url :</label>&nbsp;<br></br>
-                        <input type="text" className="inputcell" id="imageUrl" placeholder="Enter Machinery's Picture Url" ></input>
+                        <input type="text" className="inputcell" id="imageUrl" placeholder="Enter Machinery's Picture Url"
+                        value={this.state.imageUrl}
+                        onChange={this.handleInputChange} ></input>
                     </div>
-                    <button type="submit" className="btn-Search">Submit</button>
+                    <button type="submit" className="btn-Search" onClick={this.onSubmit}>Update</button>
                 </form>
     
                 </div>

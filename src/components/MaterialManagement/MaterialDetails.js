@@ -1,29 +1,29 @@
 import axios from 'axios';
 import React, { Component } from 'react';
 
-class MachineryDetails extends Component {
+class MaterialDetails extends Component {
 
     constructor(props){
         super(props);
 
         this.state={
-            machineries:[]
+            materials:[]
         };
 
     }
 
     componentDidMount(){
-        this.retrieveMachineries();
+        this.retrieveMaterials();
     }
     
-    retrieveMachineries(){
-        axios.get("http://localhost:8000/machineries").then(res =>{
+    retrieveMaterials(){
+        axios.get("http://localhost:8000/materials").then(res =>{
             if(res.data.success){
                 this.setState({
-                    machineries:res.data.existingMechineries
+                    materials:res.data.existingMaterials
                 });
 
-                console.log(this.state.machineries);
+                console.log(this.state.materials);
             }
         });
     }
@@ -31,9 +31,9 @@ class MachineryDetails extends Component {
 
     onDelete = (id) =>{
 
-        axios.delete(`http://localhost:8000/machinery/delete/${id}`).then((res) =>{
+        axios.delete(`http://localhost:8000/material/delete/${id}`).then((res) =>{
             alert("Delete Successfully");
-            this.retrieveMachineries();
+            this.retrieveMaterials();
         });
     }
 
@@ -45,39 +45,39 @@ class MachineryDetails extends Component {
                     <nav className="prmenu">
                         <ul>
                             <li><a href="/material-home"><i class="fa-solid fa-house"></i> Home</a></li>                    
-                            <li><a href="/add-machinery"><i class="fa-solid fa-circle-plus"></i> Add Machinery</a></li>
-                            <li><a href="/machinery"><i class="fa-solid fa-list"></i> List of machineries</a></li>
+                            <li><a href="/add-material"><i class="fa-solid fa-circle-plus"></i> Add Material</a></li>
+                            <li><a href="/materials"><i class="fa-solid fa-list"></i> List of Materials</a></li>
                         </ul>
                     </nav>       
                 </div>
-                <u><h2 className="h-tag"><i class="fa-solid fa-list"></i> Machinery And Equipment</h2></u>
+                <u><h2 className="h-tag"><i class="fa-solid fa-list"></i> List of Materials</h2></u>
                 <table className='table'>
                     <thead>
                         <tr>
                             <th scope='col'>#</th>
-                            <th scope='col'>Machinery ID</th>
-                            <th scope='col'>Description</th>
+                            <th scope='col'>Contract ID</th>
+                            <th scope='col'>Material ID</th>
+                            <th scope='col'>Material Type</th>
                             <th scope='col'>Quantity</th>
-                            <th scope='col'>Purchased Date</th>
-                            <th scope='col'>Image</th>
+                            <th scope='col'>Price</th>
                             <th scope='col'>Action</th>
                         </tr>
                     </thead>
                     <tbody>
-                        {this.state.machineries.map((machineries,index) =>(
+                        {this.state.materials.map((materials,index) =>(
                             <tr>
                                 <th scope='row'>{index+1}</th>
-                                <td>{machineries.machineryId}</td>
-                                <td>{machineries.description}</td>
-                                <td>{machineries.quantity}</td>
-                                <td>{machineries.purchasedDate}</td>
-                                <td><img className="mc_view" src={machineries.imageUrl} alt=""/></td>
+                                <td>{materials.contractID}</td>
+                                <td>{materials.materialID}</td>
+                                <td>{materials.materialType}</td>
+                                <td>{materials.quantity}</td>
+                                <td>Rs.{materials.price}.00</td>
                                 <td>
-                                    <a className='btn btn-warning' href={`/edit-machinery/${machineries._id}`}>
+                                    <a className='btn btn-warning' href={`/edit-material/${materials._id}`}>
                                         <i className='fas fa-edit'></i>&nbsp; Edit
                                     </a>
                                     &nbsp;
-                                    <a className='btn btn-danger' href="#" onClick={() =>this.onDelete(machineries._id)}>
+                                    <a className='btn btn-danger' href="#" onClick={() =>this.onDelete(materials._id)}>
                                         <i className='far fa-trash-alt'></i>&nbsp; Delete
                                     </a>
                                 </td>
@@ -91,4 +91,4 @@ class MachineryDetails extends Component {
     }
 }
 
-export default MachineryDetails;
+export default MaterialDetails;

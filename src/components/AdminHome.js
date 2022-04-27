@@ -38,7 +38,7 @@ function Adminhome() {
                     </div>
 
                     <div className='card card7'>
-                    <a href='/shedule-home'><h1 className='topic'>Time Management & Scheduling</h1></a>
+                    <a href='/viewSchedule'><h1 className='topic'>Time Management & Scheduling</h1></a>
                     </div>
 
                     <div className='card card8'>

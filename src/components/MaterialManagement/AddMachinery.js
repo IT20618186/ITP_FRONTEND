@@ -37,14 +37,14 @@ function AddMachinery(){
             <div className="hero">
                <nav className="prmenu">
                     <ul className="">
-                        <li><a href="/">Home</a></li>                    
-                        <li><a href="/add">Add Machinery</a></li>
-                        <li><a href="/machinery">List of machineries</a></li>
+                        <li><a href="/material-home"><i class="fa-solid fa-house"></i> Home</a></li>                    
+                        <li><a href="/add-machinery"><i class="fa-solid fa-circle-plus"></i> Add Machinery</a></li>
+                        <li><a href="/machinery"><i class="fa-solid fa-list"></i> List of machineries</a></li>
                     </ul>
                </nav>       
             </div>
             
-            <u><h2 className="h-tag">Add Machinery Details</h2></u>
+            <u><h2 className="h-tag"><i class="fa-solid fa-circle-plus"></i> Add Machinery Details</h2></u>
             <div className="input-form">
             <form className="forms" onSubmit={sendData}>
                 <div className="form-group">

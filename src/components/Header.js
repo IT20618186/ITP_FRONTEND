@@ -15,11 +15,10 @@ function Header() {
                 
                 <div className="collapse navbar-collapse" id="navbar-menu">
                     <ul className="nav navbar-nav menu">
-                        <li><a href="/">Home</a></li>                    
-                        <li><a href="/add">Add Machinery</a></li>
-                        <li><a href="#services">List of machineries</a></li>
-                        <li><a href="#portfolio">Create Bill</a></li>
-                        <li><a href="#contact_form">Genarate Report</a></li>
+                        <li><a href="/"><i class="fa-solid fa-house"></i> Home</a></li>                    
+                        <li><a href="/about"><i class="fa-solid fa-eject"></i> About</a></li>
+                        <li><a href="/signup"><i class="fa-solid fa-user-plus"></i> Sign Up</a></li>
+                        <li><a href="/signin"><i class="fa-solid fa-arrow-rotate-left"></i>Sign in</a></li>
                     </ul>
                 </div>
             </div>   
