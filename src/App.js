@@ -11,7 +11,14 @@ import Machinerydetails from './components/MaterialManagement/MachineryDetails';
 import EditMachinery from './components/MaterialManagement/EditMachinery';
 import Crewandsalaryhome from './components/CrewAndSalaryManagement/CrewAndSalaryHome';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-
+import AllFeedbacks from './components/CustomerManagement/AllFeedbacks';
+import AddFeedback from './components/CustomerManagement/AddFeedback';
+import AddCustomer from './components/CustomerManagement/AddCustomer';
+import AllCustomers from './components/CustomerManagement/AllCustomers';
+import CustomerDetails from './components/CustomerManagement/CustomerDetails';
+import EditCustomer from './components/CustomerManagement/EditCustomer';
+import Addcususer from './components/CustomerManagement/AddCususer';
+import Customerprofile from './components/CustomerManagement/Customerprofile';
 
 
 function App() {
@@ -51,6 +58,41 @@ function App() {
         <Routes>
           <Route path='/crew-and-salary-home' element={<Crewandsalaryhome/>} />
         </Routes>
+
+
+        <Routes>
+          <Route path='/customer/fb' element={<AllFeedbacks/>} />
+        </Routes>
+
+        <Routes>
+          <Route path='/feedback/add' element={<AddFeedback/>} />
+        </Routes>
+
+        <Routes>
+          <Route path='/customers/add' element={<AddCustomer/>} />
+        </Routes>
+        <Routes>
+          <Route exact path='/customers/read' element = {<AllCustomers/>}  />
+        </Routes>
+        <Routes>
+          <Route path='/customers/edit/:id' element = {<EditCustomer/>} />
+        </Routes>
+      
+        <Routes>
+          <Route path='/cususers/add' element = {<Addcususer/>} />
+        </Routes>
+        
+        
+        <Routes>
+          <Route path='/cususer/read/:id' element = {<Customerprofile/>} />
+        </Routes>
+      
+       
+        <Routes>
+          <Route path='/cutomer/read/:id' element = {<CustomerDetails/>} />
+        </Routes>
+
+
 
         <FooterBottom/>  
         
