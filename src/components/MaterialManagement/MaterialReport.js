@@ -1,7 +1,9 @@
 import axios from 'axios';
 import React, { Component } from 'react';
+import ReactToPrint from 'react-to-print';
+import {render} from 'react-dom'
 
-class MaterialDetails extends Component {
+export default class MaterialReport extends Component {
 
     constructor(props){
         super(props);
@@ -25,15 +27,6 @@ class MaterialDetails extends Component {
 
                 console.log(this.state.materials);
             }
-        });
-    }
-
-
-    onDelete = (id) =>{
-
-        axios.delete(`http://localhost:8000/material/delete/${id}`).then((res) =>{
-            alert("Delete Successfully");
-            this.retrieveMaterials();
         });
     }
 
@@ -64,18 +57,11 @@ class MaterialDetails extends Component {
 
     render() {
         return (
-            <div className="container">
-                <div className="hero">
-                    <nav className="prmenu">
-                        <ul>
-                            <li><a href="/material-home"><i class="fa-solid fa-house"></i> Home</a></li>                    
-                            <li><a href="/add-material"><i class="fa-solid fa-circle-plus"></i> Add Material</a></li>
-                            <li><a href="/materials"><i class="fa-solid fa-list"></i> List of Materials</a></li>
-                            <li><a href="/materialsReport"><i class="fa-solid fa-file"></i> Material Report</a></li>
-                        </ul>
-                    </nav>       
-                </div>
-                <u><h2 className="h-tag"><i class="fa-solid fa-list"></i> List of Materials</h2></u>
+            <div className="container"
+            ref={el=>(this.componentRef=el)}
+            >
+                
+                <u><h2 className="h-tag"><i class="fa-solid fa-list"></i> List of Used Materials </h2></u>
 
                 <div class="Search-bar">
                     <form class="Search-form">
@@ -92,7 +78,6 @@ class MaterialDetails extends Component {
                             <th scope='col'>Material Type</th>
                             <th scope='col'>Quantity</th>
                             <th scope='col'>Price</th>
-                            <th scope='col'>Action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -104,23 +89,28 @@ class MaterialDetails extends Component {
                                 <td>{materials.materialType}</td>
                                 <td>{materials.quantity}</td>
                                 <td>Rs.{materials.price}.00</td>
-                                <td>
-                                    <a className='btn btn-warning' href={`/edit-material/${materials._id}`}>
-                                        <i className='fas fa-edit'></i>&nbsp; Edit
-                                    </a>
-                                    &nbsp;
-                                    <a className='btn btn-danger' href="#" onClick={() =>this.onDelete(materials._id)}>
-                                        <i className='far fa-trash-alt'></i>&nbsp; Delete
-                                    </a>
-                                </td>
                             </tr>
                         ))}
                     </tbody> 
                 </table>
+
+                <a className='btn btn-warning' href={"/materials"}>
+                <i class="fa-solid fa-caret-left"></i>&nbsp; Back
+                </a>
+                
+
+                <div className='text-right mb-3'>
+                        <ReactToPrint
+                            trigger={()=>{
+                            return <button className="btn btn-success" ><i class="fa-solid fa-file-pdf"></i>&nbsp; Print Report </button>
+                            }}
+                            content={()=>this.componentRef}
+                            documentTitle = 'Contracts Material Report'
+                            pageStyle= "print"
+                        />
+                    </div>
  
             </div>
         );
     }
 }
-
-export default MaterialDetails;

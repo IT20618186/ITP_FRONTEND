@@ -15,6 +15,8 @@ import MaterialDetails from './components/MaterialManagement/MaterialDetails';
 import AddMaterials from './components/MaterialManagement/AddMaterials';
 import ViewSchedule from './components/TimeManagementAndScheduling/ViewSchedule';
 import AddTimescheduling from './components/TimeManagementAndScheduling/AddTimescheduling';
+import MaterialReport from './components/MaterialManagement/MaterialReport';
+import EditMaterial from './components/MaterialManagement/EditMaterial';
 
 
 
@@ -47,6 +49,12 @@ function App() {
         </Routes>
         <Routes>
           <Route exact path="/add-material" element={<AddMaterials/>} />
+        </Routes>
+        <Routes>
+          <Route exact path="/materialsReport" element={<MaterialReport/>} />
+        </Routes>
+        <Routes>
+          <Route exact path="/edit-material/:id" element={<EditMaterial/>} />
         </Routes>
 
 

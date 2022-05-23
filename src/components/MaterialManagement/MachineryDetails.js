@@ -38,6 +38,30 @@ class MachineryDetails extends Component {
     }
 
 
+    filterData(machineries, searchKey){
+        const result = machineries.filter((machineries) =>
+        machineries.description.toLowerCase().includes(searchKey) ||
+        machineries.machineryId.toLowerCase().includes(searchKey) ||
+        machineries.purchasedDate.toLowerCase().includes(searchKey)
+        )
+
+        this.setState({machineries:result})
+    }
+
+
+    handleSearchArea = (e) => {
+
+        const searchKey = e.currentTarget.value;
+
+        axios.get("http://localhost:8000/machineries").then(res =>{
+            if(res.data.success){
+                this.filterData(res.data.existingMechineries, searchKey);
+            }
+        });
+
+    }
+
+
     render() {
         return (
             <div className="container">
@@ -51,6 +75,13 @@ class MachineryDetails extends Component {
                     </nav>       
                 </div>
                 <u><h2 className="h-tag"><i class="fa-solid fa-list"></i> Machinery And Equipment</h2></u>
+
+                <div class="Search-bar">
+                    <form class="Search-form">
+                        <input class="Input-data" type="search" placeholder="Search" name='searchQuery' aria-label="Search" onChange={this.handleSearchArea}/>
+                    </form>
+                </div>
+
                 <table className='table'>
                     <thead>
                         <tr>
@@ -65,7 +96,7 @@ class MachineryDetails extends Component {
                     </thead>
                     <tbody>
                         {this.state.machineries.map((machineries,index) =>(
-                            <tr>
+                            <tr key={index}>
                                 <th scope='row'>{index+1}</th>
                                 <td>{machineries.machineryId}</td>
                                 <td>{machineries.description}</td>

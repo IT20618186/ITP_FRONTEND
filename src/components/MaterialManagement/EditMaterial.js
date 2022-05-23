@@ -6,18 +6,18 @@ import { updatedata } from './context/ContextProvider'
 
 
 
-const Edit = () => {
+const EditMaterial = () => {
 
    const { setUPdata} = useContext(updatedata)
 
    const navigate = useNavigate("");
 
     const [inpval, setINP] = useState({
-        machineryId:"",
-        description:"",
+        contractID:"",
+        materialID:"",
+        materialType:"",
         quantity:"",
-        purchasedDate:"",
-        imageUrl:""
+        price:""
     });
 
     const setdata = (e) => {
@@ -39,7 +39,7 @@ const Edit = () => {
 
     const getdata = async () => {
 
-        const res = await fetch(`http://localhost:8000/machinery/${id}`, {
+        const res = await fetch(`http://localhost:8000/material/${id}`, {
             method: "GET",
             headers: {
                 "Content-Type": "application/json"
@@ -47,14 +47,14 @@ const Edit = () => {
         });
 
         const data = await res.json();
-        console.log(data.machinery);//must be change
+        console.log(data.Material);//must be change
         
 
         if (res.status === 422 || !data) {
             console.log("error ");
 
         } else {
-            setINP(data.machinery)//must be change
+            setINP(data.Material)//must be change
             console.log("get data");
 
         }
@@ -66,28 +66,28 @@ const Edit = () => {
     }, []);
 
 
-    const updateuser = async(e)=>{
+    const updateMaterial = async(e)=>{
         e.preventDefault();
 
-        const {machineryId,description,quantity,purchasedDate,imageUrl} = inpval;
+        const {contractID,materialID,materialType,quantity,price} = inpval;
 
-        const res2 = await fetch(`http://localhost:8000/machinery/update/${id}`,{
+        const res2 = await fetch(`http://localhost:8000/material/update/${id}`,{
             method: "PATCH",
             headers: {
                 "Content-Type": "application/json"
             },
             body:JSON.stringify({
-                machineryId,description,quantity,purchasedDate,imageUrl
+                contractID,materialID,materialType,quantity,price
             })
         });
 
         const data2 = await res2.json();
         console.log(data2);
-        alert("Do you want to  edit that data?");
+        alert("Do you want to edit that data?");
         if(res2.status === 422 || !data2){
             alert("fill the data");
         }else{
-            navigate("/machinery")
+            navigate("/materials")
             setUPdata(data2);
         }
 
@@ -103,33 +103,43 @@ const Edit = () => {
                     <nav className="prmenu">
                         <ul className="">
                             <li><a href="/material-home"><i class="fa-solid fa-house"></i> Home</a></li>                    
-                            <li><a href="/add-machinery"><i class="fa-solid fa-circle-plus"></i> Add Machinery</a></li>
-                            <li><a href="/machinery"><i class="fa-solid fa-list"></i> List of machineries</a></li>
+                            <li><a href="/add-material"><i class="fa-solid fa-circle-plus"></i> Add Material</a></li>
+                            <li><a href="/materials"><i class="fa-solid fa-list"></i> List of materials</a></li>
                         </ul>
                     </nav>       
                 </div>     
                 
-                <h2 className="h-tag"><i class="fa-solid fa-pen-to-square"></i> Update Machinery Details</h2>
+                <h2 className="h-tag"><i class="fa-solid fa-pen-to-square"></i> Update Material Details</h2>
                 <div className="input-form">
                 <form className="forms" noValidate>
 
                     <div className="form-group" style={{marginBottom:'15px'}}>
-                        <label style={{marginBottom:'5px'}}>Machinery ID :</label>&nbsp;<br></br>
+                        <label style={{marginBottom:'5px'}}>Contract ID :</label>&nbsp;<br></br>
                         <input type="text"
                         className="inputcell"
-                        name="machineryId"
-                        placeholder="Enter Machinery ID"
-                        value={inpval.machineryId}
+                        name="contractID"
+                        placeholder="Enter Contract ID"
+                        value={inpval.contractID}
                         onChange={setdata}/>
                     </div>
 
                     <div className="form-group" style={{marginBottom:'15px'}}>
-                        <label style={{marginBottom:'5px'}}>Description :</label>&nbsp;<br></br>
+                        <label style={{marginBottom:'5px'}}>Material ID :</label>&nbsp;<br></br>
                         <input type="text"
                         className="inputcell"
-                        name="description"
-                        placeholder="Enter Description"
-                        value={inpval.description}
+                        name="materialID"
+                        placeholder="Enter Material ID"
+                        value={inpval.materialID}
+                        onChange={setdata}/>
+                    </div>
+
+                    <div className="form-group" style={{marginBottom:'15px'}}>
+                        <label style={{marginBottom:'5px'}}>Material Type :</label>&nbsp;<br></br>
+                        <input type="text"
+                        className="inputcell"
+                        name="materialType"
+                        placeholder="Enter Material Type"
+                        value={inpval.materialType}
                         onChange={setdata}/>
                     </div>
 
@@ -144,29 +154,17 @@ const Edit = () => {
                     </div>
 
                     <div className="form-group" style={{marginBottom:'15px'}}>
-                        <label style={{marginBottom:'5px'}}>Purchased of Date :</label>&nbsp;<br></br>
+                        <label style={{marginBottom:'5px'}}>Price :</label>&nbsp;<br></br>
                         <input type="text"
                         className="inputcell"
-                        name="purchasedDate"
-                        placeholder="Enter Purchased Date"
-                        value={inpval.purchasedDate}
+                        name="price"
+                        placeholder="Enter Price"
+                        value={inpval.price}
                         onChange={setdata}/>
                     </div>
 
-                    <div className="form-group" style={{marginBottom:'15px'}}>
-                        <label style={{marginBottom:'5px'}}>image Url :</label>&nbsp;<br></br>
-                        <input type="text"
-                        className="inputcell"
-                        name="imageUrl"
-                        placeholder="Enter Image Url"
-                        value={inpval.imageUrl}
-                        onChange={setdata}/>
-                    </div>
-
-                    <button className="btn btn-success" type="submit" style={{marginTop:'15px'}} onClick={updateuser} >
+                    <button className="btn btn-success" type="submit" style={{marginTop:'15px'}} onClick={updateMaterial} >
                         <i className="far fa-check-square"></i>
-                        
-                        
                         &nbsp; Save
                     </button>
 
@@ -177,5 +175,5 @@ const Edit = () => {
         )
     }
 
-export default Edit;
+export default EditMaterial;
 

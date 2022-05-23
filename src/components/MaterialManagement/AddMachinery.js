@@ -9,11 +9,15 @@ function AddMachinery(){
     const [purchasedDate, setPurchasedDate] = useState("");
     const [imageUrl, setImageUrl] = useState("");
 
+    const [machineryIdErr, setMachineryIdErr] = useState({});
+    const [descriptionErr, setDescriptionErr] = useState({});
+
 
     function sendData(e){
         
         e.preventDefault();
-        
+        const isValid = formValidation();
+        if(isValid){
         const newMachinery ={
             machineryId,
             description,
@@ -24,10 +28,33 @@ function AddMachinery(){
 
         axios.post("http://localhost:8000/machinery/save", newMachinery).then(()=>{
             alert("New Machinery Added.");
+            window.location = '/machinery';
             
         }).catch((err)=>{
             alert(err);
         })
+    }
+    }
+
+    const formValidation = () =>{
+        const machineryIdErr = {};
+        const descriptionErr = {};
+        let isValid = true;
+
+        if(description.trim().length > 40){
+            descriptionErr.descriptionShort = "Description is too long"
+            isValid = false;
+        }
+
+        if(!machineryId.includes("Mc")){
+            machineryIdErr.machineryIdMC = "MachineryId Should start with 'MC'"
+            isValid = false;
+        }
+
+        setDescriptionErr(descriptionErr);
+        setMachineryIdErr(machineryIdErr);
+
+        return isValid;
 
     }
 
@@ -54,6 +81,11 @@ function AddMachinery(){
                         setMachineryId(e.target.value);
 
                     }}></input>
+
+                    {Object.keys(machineryIdErr).map((key)=>{
+                        return <div style={{color : "red"}}>{machineryIdErr[key]}</div>
+                    })}
+
                 </div>
                 
                 <div className="form-group">
@@ -63,6 +95,11 @@ function AddMachinery(){
                         setDescription(e.target.value);
 
                     }}></input>
+
+                    {Object.keys(descriptionErr).map((key)=>{
+                        return <div style={{color : "red"}}>{descriptionErr[key]}</div>
+                    })}
+
                 </div>
 
                 <div className="form-group">
