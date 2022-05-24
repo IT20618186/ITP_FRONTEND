@@ -38,6 +38,14 @@ function AddMaterials(){
         }
     }
 
+    function demofill(){
+        setContractID("CON2200")
+        setMaterialID("M0014")
+        setMaterialType("Rhino Ceiling Sheet (4x4)")
+        setQuantity("60")
+        setPrice("71860")
+    }
+
     const formValidation = () =>{
         const contractIDErr = {};
         const materialIDErr = {};
@@ -80,7 +88,7 @@ function AddMaterials(){
 
                 <div className="form-group">
                     <label for="Con_ID">Contract ID :</label>&nbsp;<br></br>
-                    <input type="text" className="inputcell" id="Con_ID" placeholder="Enter Contract's ID" onChange={(e) =>{
+                    <input type="text" className="inputcell" id="Con_ID" value={contractID} placeholder="Enter Contract's ID" onChange={(e) =>{
 
                         setContractID(e.target.value);
 
@@ -93,7 +101,7 @@ function AddMaterials(){
 
                 <div className="form-group">
                     <label for="ID">Material ID :</label>&nbsp;<br></br>
-                    <input type="text" className="inputcell" id="ID" placeholder="Enter Material's ID" onChange={(e) =>{
+                    <input type="text" className="inputcell" id="ID" value={materialID} placeholder="Enter Material's ID" onChange={(e) =>{
 
                         setMaterialID(e.target.value);
 
@@ -106,7 +114,7 @@ function AddMaterials(){
                 
                 <div className="form-group">
                     <label for="Material_Type">Material Type :</label>&nbsp;<br></br>
-                    <input type="text" className="inputcell" id="Material_Type" placeholder="Enter Material's Type" onChange={(e) =>{
+                    <input type="text" className="inputcell" id="Material_Type" value={materialType} placeholder="Enter Material's Type" onChange={(e) =>{
 
                         setMaterialType(e.target.value);
 
@@ -115,7 +123,7 @@ function AddMaterials(){
 
                 <div className="form-group">
                     <label for="Quantity">Material's Quantity :</label>&nbsp;<br></br>
-                    <input type="text" className="inputcell" id="Quantity" placeholder="Enter Quantity" onChange={(e) =>{
+                    <input type="text" className="inputcell" id="Quantity" value={quantity} placeholder="Enter Quantity" onChange={(e) =>{
 
                         setQuantity(e.target.value);
 
@@ -124,7 +132,7 @@ function AddMaterials(){
 
                 <div className="form-group">
                     <label for="price">Price :</label>&nbsp;<br></br>
-                    <input type="text" className="inputcell" id="price" placeholder="Enter Price" onChange={(e) =>{
+                    <input type="text" className="inputcell" id="price" value={price} placeholder="Enter Price" onChange={(e) =>{
 
                         setPrice(e.target.value);
 
@@ -134,6 +142,8 @@ function AddMaterials(){
                 
                 <button type="submit" className="btn-Search">Submit</button>
             </form>
+            <br/>
+            <button onClick={()=>{demofill()}} className="btn btn-success">DEMO</button>
 
             </div>
             

@@ -35,6 +35,17 @@ function AddMachinery(){
         })
     }
     }
+    const handleChange = e => {
+        console.log(e);
+    }
+
+    function demofill(){
+        setMachineryId("Mc0009")
+        setDescription("Plate Compactor")
+        setQuantity("4")
+        setPurchasedDate("2021.12.10")
+        setImageUrl("../images/machinery10.jpg")
+    }
 
     const formValidation = () =>{
         const machineryIdErr = {};
@@ -76,7 +87,7 @@ function AddMachinery(){
             <form className="forms" onSubmit={sendData}>
                 <div className="form-group">
                     <label for="ID">Machinery ID :</label>&nbsp;<br></br>
-                    <input type="text" className="inputcell" id="ID" placeholder="Enter Machinery ID" onChange={(e) =>{
+                    <input type="text" className="inputcell" id="ID" value={machineryId} placeholder="Enter Machinery ID" onChange={(e) =>{
 
                         setMachineryId(e.target.value);
 
@@ -90,7 +101,7 @@ function AddMachinery(){
                 
                 <div className="form-group">
                     <label for="description">Description :</label>&nbsp;<br></br>
-                    <input type="text" className="inputcell" id="description" placeholder="Enter Description" onChange={(e) =>{
+                    <input type="text" className="inputcell" id="description" value={description} placeholder="Enter Description" onChange={(e) =>{
 
                         setDescription(e.target.value);
 
@@ -104,7 +115,7 @@ function AddMachinery(){
 
                 <div className="form-group">
                     <label for="Quantity">Machinery's Quantity :</label>&nbsp;<br></br>
-                    <input type="text" className="inputcell" id="Quantity" placeholder="Enter Quantity" onChange={(e) =>{
+                    <input type="text" className="inputcell" id="Quantity" value={quantity} placeholder="Enter Quantity" onChange={(e) =>{
 
                         setQuantity(e.target.value);
 
@@ -113,7 +124,7 @@ function AddMachinery(){
 
                 <div className="form-group">
                     <label for="date">Date of Purchased :</label>&nbsp;<br></br>
-                    <input type="text" className="inputcell" id="date" placeholder="Enter Date of Purchased Item" onChange={(e) =>{
+                    <input type="text" className="inputcell" id="date" value={purchasedDate} placeholder="Enter Date of Purchased Item" onChange={(e) =>{
 
                         setPurchasedDate(e.target.value);
 
@@ -122,7 +133,7 @@ function AddMachinery(){
 
                 <div className="form-group">
                     <label for="imageUrl">Machinery Image Url :</label>&nbsp;<br></br>
-                    <input type="text" className="inputcell" id="imageUrl" placeholder="Enter Machinery's Picture Url" onChange={(e) =>{
+                    <input type="text" className="inputcell" id="imageUrl" value={imageUrl} placeholder="Enter Machinery's Picture Url" onChange={(e) =>{
 
                         setImageUrl(e.target.value);
 
@@ -130,6 +141,8 @@ function AddMachinery(){
                 </div>
                 <button type="submit" className="btn-Search">Submit</button>
             </form>
+            <br/>
+            <button onClick={()=>{demofill()}} className="btn btn-success">DEMO</button>
 
             </div>
             
