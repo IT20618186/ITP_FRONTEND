@@ -17,8 +17,8 @@ function Header() {
                     <ul className="nav navbar-nav menu">
                         <li><a href="/"><i class="fa-solid fa-house"></i> Home</a></li>                    
                         <li><a href="/about"><i class="fa-solid fa-eject"></i> About</a></li>
-                        <li><a href="/signup"><i class="fa-solid fa-user-plus"></i> Sign Up</a></li>
-                        <li><a href="/signin"><i class="fa-solid fa-arrow-rotate-left"></i>Sign in</a></li>
+                        <li><a href="/signup"><i class="fa-solid fa-circle-user"></i> Profile</a></li>
+                        <li><a href="/signin"><i class="fa-solid fa-arrow-rotate-left"></i> Logout</a></li>
                     </ul>
                 </div>
             </div>   

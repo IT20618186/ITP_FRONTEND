@@ -1087,5 +1087,6 @@ nav >ul >li >a:hover{
 
 .para1{
     font-size: 20px;
-    color: #b57c33;
+    color: #000000;
+    font-style: bold;
 }

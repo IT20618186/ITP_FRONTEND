@@ -9,11 +9,16 @@ function AddMaterials(){
     const [quantity, setQuantity] = useState("");
     const [price, setPrice] = useState("");
 
+    const [contractIDErr, setContractIDErr] = useState({});
+    const [materialIDErr, setMaterialIDErr] = useState({});
+
 
     function sendData(e){
         
         e.preventDefault();
-        
+        const isValid = formValidation();
+
+        if(isValid) {
         const newMaterial ={
             contractID,
             materialID,
@@ -23,13 +28,38 @@ function AddMaterials(){
         }
 
         axios.post("http://localhost:8000/material/save", newMaterial).then(()=>{
-            alert("New Machinery Added.");
+            alert("New Material Added.");
+            window.location = '/materials';
             
         }).catch((err)=>{
             alert(err);
         })
+    
+        }
+    }
+
+    const formValidation = () =>{
+        const contractIDErr = {};
+        const materialIDErr = {};
+        let isValid = true;
+
+        if(!contractID.includes("CON")){
+            contractIDErr.contractIdCON = "ContractID should start with 'CON' "
+            isValid = false;
+        }
+
+        if(!materialID.includes("M")){
+            materialIDErr.materialIdM = "MaterialID should start with 'M' "
+            isValid = false;
+        }
+
+        setContractIDErr(contractIDErr);
+        setMaterialIDErr(materialIDErr);
+
+        return isValid;
 
     }
+
 
 
     return(
@@ -55,6 +85,10 @@ function AddMaterials(){
                         setContractID(e.target.value);
 
                     }}></input>
+
+                    {Object.keys(contractIDErr).map((key) =>{
+                        return <div style={{color : "red"}}>{contractIDErr[key]}</div>
+                    })}
                 </div>
 
                 <div className="form-group">
@@ -64,6 +98,10 @@ function AddMaterials(){
                         setMaterialID(e.target.value);
 
                     }}></input>
+
+                    {Object.keys(materialIDErr).map((key)=>{
+                        return <div style={{color : "red"}}>{materialIDErr[key]}</div>
+                    })}
                 </div>
                 
                 <div className="form-group">

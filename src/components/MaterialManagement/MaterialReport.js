@@ -33,7 +33,7 @@ export default class MaterialReport extends Component {
 
     filterData(materials, searchKey){
         const result = materials.filter((materials) =>
-        materials.contractID.toLowerCase().includes(searchKey) ||
+        materials.contractID.includes(searchKey) ||
         materials.materialID.toLowerCase().includes(searchKey) ||
         materials.materialType.toLowerCase().includes(searchKey)
         )
