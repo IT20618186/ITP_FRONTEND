@@ -16,10 +16,9 @@ function Header() {
                 <div className="collapse navbar-collapse" id="navbar-menu">
                     <ul className="nav navbar-nav menu">
                         <li><a href="/">Home</a></li>                    
-                        <li><a href="/add">Add Machinery</a></li>
-                        <li><a href="#services">List of machineries</a></li>
-                        <li><a href="#portfolio">Create Bill</a></li>
-                        <li><a href="#contact_form">Genarate Report</a></li>
+                        <li><a href="/add">Crew Details</a></li>
+                        <li><a href="#services">Salary Details</a></li>
+                        
                     </ul>
                 </div>
             </div>   

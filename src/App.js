@@ -11,7 +11,12 @@ import Machinerydetails from './components/MaterialManagement/MachineryDetails';
 import EditMachinery from './components/MaterialManagement/EditMachinery';
 import Crewandsalaryhome from './components/CrewAndSalaryManagement/CrewAndSalaryHome';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-
+import AddCrew from './components/CrewAndSalaryManagement/AddCrew';
+import AddSalaryDetails from './components/CrewAndSalaryManagement/AddSalaryDetails';
+import SalaryDetails from './components/CrewAndSalaryManagement/SalaryDetails';
+import CrewList from './components/CrewAndSalaryManagement/CrewList';
+import Editc from './components/CrewAndSalaryManagement/Editc';
+import EditSalary from './components/CrewAndSalaryManagement/EditSalary';
 
 
 function App() {
@@ -50,6 +55,15 @@ function App() {
 
         <Routes>
           <Route path='/crew-and-salary-home' element={<Crewandsalaryhome/>} />
+        </Routes>
+        <Routes>
+          <Route path='/crew/add' element={<AddCrew/>} />
+          <Route path='/crew/list' element={<CrewList/>} />
+          <Route  path="/crew/edit/:id" element={<Editc/>} />
+
+          <Route path='/salary/add' element={<AddSalaryDetails/>} />
+          <Route path='/salary/list' element={<SalaryDetails/>} />
+          <Route  path="/salary/edit/:id" element={<EditSalary/>} />
         </Routes>
 
         <FooterBottom/>  
